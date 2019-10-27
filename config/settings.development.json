@@ -1,0 +1,13 @@
+{
+  "defaultAccounts": [
+    { "email": "wileyb@hawaii.edu", "password": "changeme", "role": "admin" }
+  ],
+
+  "defaultData": [
+    { "name": "Boogie Board", "quantity": 2, "owner": "wileyb@hawaii.edu", "condition": "excellent" }
+  ],
+
+  "automatedEmailInfo": [
+    { "email": "gemshawaii19", "password": "UHManoa2019"}
+  ]
+}
