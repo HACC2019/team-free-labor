@@ -21,6 +21,7 @@ const formSchema = new SimpleSchema({
     allowedValues: ['excellent', 'good', 'fair', 'poor'],
     defaultValue: 'good',
   },
+  otherHDYHA: String,
 });
 
 /** Renders the Page for adding a document. */
@@ -28,9 +29,9 @@ class AddStuff extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { name, quantity, condition } = data;
+    const { name, quantity, condition, otherHDYHA } = data;
     const owner = Meteor.user().username;
-    Stuffs.insert({ name, quantity, condition, owner },
+    Stuffs.insert({ name, quantity, condition, otherHDYHA, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -53,6 +54,7 @@ class AddStuff extends React.Component {
                 <TextField name='name'/>
                 <NumField name='quantity' decimal={false}/>
                 <SelectField name='condition'/>
+                <TextField name='otherHDYHA'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>

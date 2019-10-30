@@ -16,7 +16,8 @@ const AppFormValues = {
     'Solar PV System', 'LED or CFL Light Bulbs'],
   assistanceFrom: ['Church', 'Community Event', 'School/Class', 'Online', 'Accountant/Tax Preparer',
     'Financial Advisor'],
-  wouldLikeToInstall: ['Solar Thermal Hot Water Heater', 'Solar PV Water Heater', 'Heat Pump Water Heater', 'Solar PV System'],
+  wouldLikeToInstall: ['Solar Thermal Hot Water Heater',
+    'Solar PV Water Heater', 'Heat Pump Water Heater', 'Solar PV System'],
   whichIsland: ['Oahu', 'Maui', 'Lanai', 'Molokai', 'Hawaii'],
 
 
@@ -25,6 +26,7 @@ const AppFormValues = {
 
 /** Define a schema to specify the structure of each document in the collection. */
 const StuffSchema = new SimpleSchema({
+  /**
   howDidYouHearAbout: { type: String, optional: true, allowedValues: AppFormValues.howDidYouHearAbout },
   otherHDYHA: String,
   whichDoYouHaveInHome: { type: String, optional: true, allowedValues: AppFormValues.whichDoYouHaveInHome },
@@ -40,9 +42,17 @@ const StuffSchema = new SimpleSchema({
   approvedContractorContact: String,
   installAddress: String,
   whichIsland: { type: String, allowedValues: AppFormValues.assistanceFrom },
+  */
+  name: String,
+  quantity: Number,
+  owner: String,
+  condition: {
+    type: String,
+    allowedValues: ['excellent', 'good', 'fair', 'poor'],
+    defaultValue: 'good',
+  },
 
-
-
+  otherHDYHA: String,
 
 
 
