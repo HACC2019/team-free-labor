@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stuffs } from '/imports/api/stuff/Stuff';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Segment, Header, Form } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import NumField from 'uniforms-semantic/NumField';
@@ -14,7 +14,6 @@ import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
 import { AppFormValues } from '../../api/stuff/Stuff';
 
-
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
   name: String,
@@ -24,7 +23,6 @@ const formSchema = new SimpleSchema({
     allowedValues: ['excellent', 'good', 'fair', 'poor'],
     defaultValue: 'good',
   },
-
 
   otherHDYHA: String,
   howDidYouHearAboutUs: { type: Array },
@@ -79,14 +77,14 @@ class AddStuff extends React.Component {
     const { name, quantity, condition, otherHDYHA } = data; // EDIT THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
     const owner = Meteor.user().username;
     Stuffs.insert({ name, quantity, condition, otherHDYHA, owner }, // EDIT THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-      (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          swal('Success', 'Item added successfully', 'success');
-          formRef.reset();
-        }
-      });
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', 'Item added successfully', 'success');
+            formRef.reset();
+          }
+        });
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -96,12 +94,18 @@ class AddStuff extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Add Stuff</Header>
-            <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
+            <AutoForm ref={ref => {
+              fRef = ref;
+            }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
               <Segment>
-                <TextField name='name'/>
-                <NumField name='quantity' decimal={false}/>
-                <SelectField name='condition'/>
-                <SelectField checkboxes name='howDidYouHearAboutUs'/>
+                <Form.Group width='equal'>
+                  <TextField name='name'/>
+                  <NumField name='quantity' decimal={false}/>
+                  <SelectField name='condition'/>
+                </Form.Group>
+                <section>
+                  <SelectField checkboxes name='howDidYouHearAboutUs'/>
+                </section>
                 <TextField name='otherHDYHA'/>
                 <BoolField name='washer' fluid label='Washer'/>
                 <NumField name='ageOfWasher' decimal={false} label={false} placeholder={'Age of washer'}/>
@@ -129,7 +133,7 @@ class AddStuff extends React.Component {
                 <TextField name='anyoneYouKnowPhone'/>
                 <TextField name='anyoneYouKnowEmail'/>
                 <TextField name='nameOnUtilAcc'/>
-                <NumField name='utilAccNum' decimal={false} label={'util account num'} />
+                <NumField name='utilAccNum' decimal={false} label={'util account num'}/>
 
                 <SelectField checkboxes name='energyImpWouldLikeToInstall'/>
                 <TextField name='approvedContractorName'/>
