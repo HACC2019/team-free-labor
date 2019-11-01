@@ -7,10 +7,13 @@ import NumField from 'uniforms-semantic/NumField';
 import SelectField from 'uniforms-semantic/SelectField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
+import BoolField from 'uniforms-unstyled/BoolField';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
+import { AppFormValues } from '../../api/stuff/Stuff';
+
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -21,7 +24,28 @@ const formSchema = new SimpleSchema({
     allowedValues: ['excellent', 'good', 'fair', 'poor'],
     defaultValue: 'good',
   },
+
   otherHDYHA: String,
+  howDidYouHearAboutUs: { type: Array },
+  'howDidYouHearAboutUs.$': { type: String, optional: true, allowedValues: AppFormValues.howDidYouHearAbout },
+
+  washer: Boolean,
+  ageOfWasher: Number,
+  dryer: Boolean,
+  ageOfDryer: Number,
+  kitchenRefrigerator: Boolean,
+  ageOfKitchenRefrigerator: Number,
+  secondRefrigerator: Boolean,
+  ageOfSecondRefrigerator: Number,
+  chestFreezer: Boolean,
+  ageOfChestFreezer: Number,
+  solarHWHeater: Boolean,
+  ageOfSolarHWHeater: Number,
+  PVSystem: Boolean,
+  ageOfPVSystem: Number,
+  LEDCFLBulbs: Boolean,
+  WIFI: Boolean,
+
 });
 
 /** Renders the Page for adding a document. */
@@ -31,7 +55,7 @@ class AddStuff extends React.Component {
   submit(data, formRef) {
     const { name, quantity, condition, otherHDYHA } = data;
     const owner = Meteor.user().username;
-    Stuffs.insert({ name, quantity, condition, otherHDYHA, owner },
+    Stuffs.insert({ name, quantity, condition, otherHDYHA, owner }, //EDIT THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -54,7 +78,26 @@ class AddStuff extends React.Component {
                 <TextField name='name'/>
                 <NumField name='quantity' decimal={false}/>
                 <SelectField name='condition'/>
+                <SelectField checkboxes name='howDidYouHearAboutUs'/>
                 <TextField name='otherHDYHA'/>
+                <BoolField name='washer' fluid label='Washer'/>
+                <NumField name='ageOfWasher' decimal={false} label={false} placeholder={'Age of washer'}/>
+                <BoolField name='dryer'/>
+                <NumField name='ageOfDryer' decimal={false} label={false} placeholder={'Age of washer'}/>
+                <BoolField name='kitchenRefrigerator'/>
+                <NumField name='ageOfKitchenRefrigerator' decimal={false} label={false} placeholder={'Age of washer'}/>
+                <BoolField name='secondRefrigerator'/>
+                <NumField name='ageOfSecondRefrigerator' decimal={false} label={false} placeholder={'Age of washer'}/>
+                <BoolField name='chestFreezer'/>
+                <NumField name='ageOfChestFreezer' decimal={false} label={false} placeholder={'Age of washer'}/>
+                <BoolField name='solarHWHeater'/>
+                <NumField name='ageOfSolarHWHeater' decimal={false} label={false} placeholder={'Age of washer'}/>
+                <BoolField name='PVSystem'/>
+                <NumField name='ageOfPVSystem' decimal={false} label={false} placeholder={'Age of washer'}/>
+                <BoolField name='LEDCFLBulbs'/>
+                <BoolField name='WIFI'/>
+
+
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>

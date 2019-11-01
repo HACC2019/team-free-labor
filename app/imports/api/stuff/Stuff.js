@@ -7,11 +7,11 @@ import { Tracker } from 'meteor/tracker';
 const Stuffs = new Mongo.Collection('Stuffs');
 
 /** How to implement "other". IF other is checked, make a form available" */
-const AppFormValues = {
+export const AppFormValues = {
   howDidYouHearAbout: ['Contractor', 'Community Organization', 'News/Radio/TV', 'Online (Internet)', 'Utility',
   'Public Event', 'Hawaii Energy', 'Friends & Family'],
-  whichDoYouHaveInHome: ['Washer', 'Dryer', ' Kitchen Refrigerator', '2nd Refrigerator',
-    'Chest Freezer', 'Solar Hot Water heater', 'Solar PV System', 'LED or CFL Light Bulbs', 'WIFI'],
+  // whichDoYouHaveInHome: ['Washer', 'Dryer', ' Kitchen Refrigerator', '2nd Refrigerator',
+   //  'Chest Freezer', 'Solar Hot Water heater', 'Solar PV System', 'LED or CFL Light Bulbs', 'WIFI'],
   interestedInInstalling: ['Washer', 'Dryer', 'Kitchen Refrigerator', 'Solar Hot Water Heater',
     'Solar PV System', 'LED or CFL Light Bulbs'],
   assistanceFrom: ['Church', 'Community Event', 'School/Class', 'Online', 'Accountant/Tax Preparer',
@@ -27,9 +27,9 @@ const AppFormValues = {
 /** Define a schema to specify the structure of each document in the collection. */
 const StuffSchema = new SimpleSchema({
   /**
-  howDidYouHearAbout: { type: String, optional: true, allowedValues: AppFormValues.howDidYouHearAbout },
-  otherHDYHA: String,
-  whichDoYouHaveInHome: { type: String, optional: true, allowedValues: AppFormValues.whichDoYouHaveInHome },
+
+
+
   interestedInInstalling: { type: String, optional: true, allowedValues: AppFormValues.interestedInInstalling },
   assistanceFrom: { type: String, optional: true, allowedValues: AppFormValues.assistanceFrom },
   anyoneYouKnowName: String,
@@ -51,10 +51,27 @@ const StuffSchema = new SimpleSchema({
     allowedValues: ['excellent', 'good', 'fair', 'poor'],
     defaultValue: 'good',
   },
-
+  howDidYouHearAbout: { type: String, optional: true, allowedValues: AppFormValues.howDidYouHearAbout },
   otherHDYHA: String,
 
+  washer: Boolean,
+  ageOfWasher: Number,
+  dryer: Boolean,
+  ageOfDryer: Number,
+  kitchenRefrigerator: Boolean,
+  ageOfKitchenRefrigerator: Number,
+  secondRefrigerator: Boolean,
+  ageOfSecondRefrigerator: Number,
+  chestFreezer: Boolean,
+  ageOfChestFreezer: Number,
+  solarHWHeater: Boolean,
+  ageOfSolarHWHeater: Number,
+  PVSystem: Boolean,
+  ageOfPVSystem: Number,
+  LEDCFLBulbs: Boolean,
+  WIFI: Boolean,
 
+  interestedInInstalling: { type: String, optional: true, allowedValues: AppFormValues.interestedInInstalling },
 
 }, { tracker: Tracker });
 
