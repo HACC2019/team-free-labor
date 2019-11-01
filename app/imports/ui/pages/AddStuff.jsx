@@ -25,10 +25,10 @@ const formSchema = new SimpleSchema({
     defaultValue: 'good',
   },
 
+
   otherHDYHA: String,
   howDidYouHearAboutUs: { type: Array },
   'howDidYouHearAboutUs.$': { type: String, optional: true, allowedValues: AppFormValues.howDidYouHearAbout },
-
   washer: Boolean,
   ageOfWasher: Number,
   dryer: Boolean,
@@ -45,6 +45,29 @@ const formSchema = new SimpleSchema({
   ageOfPVSystem: Number,
   LEDCFLBulbs: Boolean,
   WIFI: Boolean,
+  interestedInInstalling: { type: Array },
+  'interestedInInstalling.$': { type: String, optional: true, allowedValues: AppFormValues.interestedInInstalling },
+  otherInterestedInInstalling: String,
+  assistanceFrom: { type: Array },
+  'assistanceFrom.$': { type: String, optional: true, allowedValues: AppFormValues.assistanceFrom },
+  assistanceFromOther: String,
+  anyoneYouKnowName: String,
+  anyoneYouKnowPhone: Number,
+  anyoneYouKnowEmail: String,
+  nameOnUtilAcc: String,
+  utilAccNum: Number,
+  energyImpWouldLikeToInstall: { type: Array },
+  'energyImpWouldLikeToInstall.$': {
+    type: String,
+    optional: true,
+    allowedValues: AppFormValues.energyImpWouldLikeToInstall,
+  },
+  approvedContractorName: String,
+  approvedContractorContact: String,
+  installAddress: String,
+  whichIsland: { type: String, allowedValues: AppFormValues.whichIsland },
+  typeOfResidence: { type: String, optional: true, allowedValues: AppFormValues.typeOfResidence },
+  typeOfResidenceOther: String,
 
 });
 
@@ -53,9 +76,9 @@ class AddStuff extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { name, quantity, condition, otherHDYHA } = data;
+    const { name, quantity, condition, otherHDYHA } = data; // EDIT THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
     const owner = Meteor.user().username;
-    Stuffs.insert({ name, quantity, condition, otherHDYHA, owner }, //EDIT THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+    Stuffs.insert({ name, quantity, condition, otherHDYHA, owner }, // EDIT THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -96,7 +119,27 @@ class AddStuff extends React.Component {
                 <NumField name='ageOfPVSystem' decimal={false} label={false} placeholder={'Age of washer'}/>
                 <BoolField name='LEDCFLBulbs'/>
                 <BoolField name='WIFI'/>
+                <SelectField checkboxes name='interestedInInstalling'/>
+                <TextField name='otherInterestedInInstalling'/>
+                <SelectField checkboxes name='assistanceFrom'/>
+                <TextField name='assistanceFromOther'/>
 
+
+                <TextField name='anyoneYouKnowName'/>
+                <TextField name='anyoneYouKnowPhone'/>
+                <TextField name='anyoneYouKnowEmail'/>
+                <TextField name='nameOnUtilAcc'/>
+                <NumField name='utilAccNum' decimal={false} label={'util account num'} />
+
+                <SelectField checkboxes name='energyImpWouldLikeToInstall'/>
+                <TextField name='approvedContractorName'/>
+                <TextField name='approvedContractorContact'/>
+                <TextField name='installAddress'/>
+
+                <SelectField checkboxes name='whichIsland'/>
+
+                <SelectField checkboxes name='typeOfResidence'/>
+                <TextField name='typeOfResidenceOther'/>
 
                 <SubmitField value='Submit'/>
                 <ErrorsField/>

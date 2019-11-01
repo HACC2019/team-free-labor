@@ -9,40 +9,23 @@ const Stuffs = new Mongo.Collection('Stuffs');
 /** How to implement "other". IF other is checked, make a form available" */
 export const AppFormValues = {
   howDidYouHearAbout: ['Contractor', 'Community Organization', 'News/Radio/TV', 'Online (Internet)', 'Utility',
-  'Public Event', 'Hawaii Energy', 'Friends & Family'],
+    'Public Event', 'Hawaii Energy', 'Friends & Family'],
   // whichDoYouHaveInHome: ['Washer', 'Dryer', ' Kitchen Refrigerator', '2nd Refrigerator',
-   //  'Chest Freezer', 'Solar Hot Water heater', 'Solar PV System', 'LED or CFL Light Bulbs', 'WIFI'],
+  //  'Chest Freezer', 'Solar Hot Water heater', 'Solar PV System', 'LED or CFL Light Bulbs', 'WIFI'],
   interestedInInstalling: ['Washer', 'Dryer', 'Kitchen Refrigerator', 'Solar Hot Water Heater',
     'Solar PV System', 'LED or CFL Light Bulbs'],
   assistanceFrom: ['Church', 'Community Event', 'School/Class', 'Online', 'Accountant/Tax Preparer',
     'Financial Advisor'],
-  wouldLikeToInstall: ['Solar Thermal Hot Water Heater',
+  energyImpWouldLikeToInstall: ['Solar Thermal Hot Water Heater',
     'Solar PV Water Heater', 'Heat Pump Water Heater', 'Solar PV System'],
   whichIsland: ['Oahu', 'Maui', 'Lanai', 'Molokai', 'Hawaii'],
-
+  typeOfResidence: ['Single Family Dwelling', 'Duplex', 'Townhouse', 'Apartment'],
 
 };
 
-
 /** Define a schema to specify the structure of each document in the collection. */
 const StuffSchema = new SimpleSchema({
-  /**
 
-
-
-  interestedInInstalling: { type: String, optional: true, allowedValues: AppFormValues.interestedInInstalling },
-  assistanceFrom: { type: String, optional: true, allowedValues: AppFormValues.assistanceFrom },
-  anyoneYouKnowName: String,
-  anyoneYouKnowPhone: Number,
-  anyoneYouKnowEmail: String,
-  nameOnUtilAcc: String,
-  utilAccNum: Number,
-  wouldLikeToInstall: { type: String, optional: true, allowedValues: AppFormValues.wouldLikeToInstall },
-  approvedContractorName: String,
-  approvedContractorContact: String,
-  installAddress: String,
-  whichIsland: { type: String, allowedValues: AppFormValues.assistanceFrom },
-  */
   name: String,
   quantity: Number,
   owner: String,
@@ -51,9 +34,9 @@ const StuffSchema = new SimpleSchema({
     allowedValues: ['excellent', 'good', 'fair', 'poor'],
     defaultValue: 'good',
   },
-  howDidYouHearAbout: { type: String, optional: true, allowedValues: AppFormValues.howDidYouHearAbout },
   otherHDYHA: String,
-
+  howDidYouHearAboutUs: { type: Array },
+  'howDidYouHearAboutUs.$': { type: String, optional: true, allowedValues: AppFormValues.howDidYouHearAbout },
   washer: Boolean,
   ageOfWasher: Number,
   dryer: Boolean,
@@ -70,8 +53,29 @@ const StuffSchema = new SimpleSchema({
   ageOfPVSystem: Number,
   LEDCFLBulbs: Boolean,
   WIFI: Boolean,
-
-  interestedInInstalling: { type: String, optional: true, allowedValues: AppFormValues.interestedInInstalling },
+  interestedInInstalling: { type: Array },
+  'interestedInInstalling.$': { type: String, optional: true, allowedValues: AppFormValues.interestedInInstalling },
+  otherInterestedInInstalling: String,
+  assistanceFrom: { type: Array },
+  'assistanceFrom.$': { type: String, optional: true, allowedValues: AppFormValues.assistanceFrom },
+  assistanceFromOther: String,
+  anyoneYouKnowName: String,
+  anyoneYouKnowPhone: Number,
+  anyoneYouKnowEmail: String,
+  nameOnUtilAcc: String,
+  utilAccNum: Number,
+  energyImpWouldLikeToInstall: { type: Array },
+  'energyImpWouldLikeToInstall.$': {
+    type: String,
+    optional: true,
+    allowedValues: AppFormValues.energyImpWouldLikeToInstall,
+  },
+  approvedContractorName: String,
+  approvedContractorContact: String,
+  installAddress: String,
+  whichIsland: { type: String, allowedValues: AppFormValues.whichIsland },
+  typeOfResidence: { type: String, optional: true, allowedValues: AppFormValues.typeOfResidence },
+  typeOfResidenceOther: String,
 
 }, { tracker: Tracker });
 
