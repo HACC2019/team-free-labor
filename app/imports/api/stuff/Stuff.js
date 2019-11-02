@@ -27,7 +27,7 @@ export const AppFormValues = {
 const StuffSchema = new SimpleSchema({
 
   name: String,
-  quantity: Number,
+  quantity: { type: Number, optional: true },
   owner: String,
   condition: {
     type: String,

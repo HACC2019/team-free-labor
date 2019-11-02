@@ -8,6 +8,9 @@ class StuffItem extends React.Component {
   render() {
     return (
         <Table.Row>
+          <Table.Column>
+
+          </Table.Column>
           <Table.Cell>{this.props.stuff.name}</Table.Cell>
           <Table.Cell>{this.props.stuff.quantity}</Table.Cell>
           <Table.Cell>{this.props.stuff.condition}</Table.Cell>
