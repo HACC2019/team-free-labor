@@ -1,29 +1,39 @@
 import React from 'react';
-import { Grid, List, Container } from 'semantic-ui-react';
+import { Grid, List, Menu, Image, Container } from 'semantic-ui-react';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
-    const footerPadding = { paddingTop: '50px' };
     return (
-        <footer>
-          <Container>
-          <Grid verticalAlign="top">
-            <Grid.Row columns="two" style={footerPadding} inverted>
-              <Grid.Column>
-                <h1>Test Footer</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt
-                  in culpa qui officia deserunt mollit anim id est laborum</p>
-              </Grid.Column>
-            </Grid.Row>
+        <Container className='footer'>
+          <Grid columns={3}>
+            <Grid.Column>
+              <Menu.Item>CONTACT US</Menu.Item>
+              <hr/>
+              <List textAlign='left'>
+                <List.Item>(808) 587-3868</List.Item>
+                <List.Item>dbedt.gems@hawaii.gov</List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column>
+              <Menu.Item>POLICIES</Menu.Item>
+              <hr/>
+              <List textAlign='left'>
+                <List.Item><a href="https://portal.ehawaii.gov/page/terms-of-use/">Terms of Use</a></List.Item>
+                <List.Item><a href="https://portal.ehawaii.gov/page/accessibility/">Accessibility</a></List.Item>
+                <List.Item><a href="https://portal.ehawaii.gov/page/privacy-policy/">Privacy Policy</a></List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column>
+              <Image
+                  src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Seal_of_the_State_of_Hawaii.svg/1200px-Seal_of_the_State_of_Hawaii.svg.png'
+                  size='tiny'
+                  className="StateLogo centered"
+              />
+              <p className='add-margin-top-10px'>Copyright © 2019, State of Hawaii. All rights reserved.</p>
+            </Grid.Column>
           </Grid>
-          </Container>
-        </footer>
+        </Container>
     );
   }
 }

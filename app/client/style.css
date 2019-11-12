@@ -119,7 +119,7 @@
 
 .ui.checkbox.new-line {
   display: block !important;
-  margin-top: 0.85rem;
+  margin-top: 0.85rem !important;
 }
 
 #LogoHome {
@@ -131,5 +131,11 @@
 
 .LogoTitle {
   font-size: 30px;
-  alignment: center;
+  align-content: center;
+}
+
+.footer {
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
