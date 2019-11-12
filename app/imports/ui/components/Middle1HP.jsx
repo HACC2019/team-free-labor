@@ -3,11 +3,11 @@ import { List, Header, Grid, Container } from 'semantic-ui-react';
 
 export default class Middle1HP extends React.Component {
   render() {
-    const gridStyle = { height: '300px' };
+    const gridStyle = { margin: '35px 0' };
     return (
         <div className={'introuction'}>
           <Container>
-          <Grid verticalAlign="middle" style={gridStyle}>
+          <Grid style={gridStyle}>
             <Grid.Row columns="two">
               <Grid.Column>
                 What is GEMS?
@@ -19,7 +19,7 @@ export default class Middle1HP extends React.Component {
                 obtaining financing for these projects.
               </Grid.Column>
               <Grid.Column>
-                Elligibility
+                Eligibility
                 <hr/>
                 <List bulleted>
                   <List.Item>Must be a Hawaiian Electric, Maui Electric, or Hawaiian Electric Light Company customer on
@@ -30,26 +30,13 @@ export default class Middle1HP extends React.Component {
                     the U.S. Department of Housing & Urban Development and Hawaii Housing Finance & Development
                     Corporation’s guidelines)
                   </List.Item>
+                  <List.Item href='http://gems.hawaii.gov/'>
+                    Additional information can be found here
+                  </List.Item>
                 </List>
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Header centered as='h2'>
-            New Application Process!
-          </Header>
-          <p>Aloha! We have recently overhauled our GEM$ loan application process!</p>
-          <p>Changes and features include:</p>
-          <List bulleted>
-            <List.Item>
-              Completely web-based application, no more frustrating PDF applications!
-            </List.Item>
-            <List.Item>
-              Account creation for easier management of your application!
-            </List.Item>
-          </List>
-          <p style={{ paddingBottom: '50px' }}>
-            Login to your existing account, or create a new one to start a new application!
-          </p>
           </Container>
         </div>
     );
