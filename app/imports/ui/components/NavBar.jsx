@@ -9,16 +9,16 @@ import { Roles } from 'meteor/alanning:roles';
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
   render() {
-    const menuStyle = { marginBottom: '10px' };
+    const menuStyle = { marginBottom: '40px' };
     return (
       <Menu style={menuStyle} attached="top" borderless inverted className={'NavBar'}>
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
-          <Image src='https://gems.hawaii.gov/wp-content/uploads/2015/01/GEMS-Logo.png' size='medium'></Image>
+          <Image src='https://gems.hawaii.gov/wp-content/uploads/2015/01/GEMS-Logo.png' size='small'></Image>
         </Menu.Item>
-        <Menu.Item as={NavLink} activeClassName='active' exact to='/authorizationpage' key='authorizationpage'>AuthPage</Menu.Item>
         {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Stuff</Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>List Stuff</Menu.Item>]
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>List Stuff</Menu.Item>,
+              <Menu.Item as={NavLink} activeClassName='active' exact to='/authorization' key='authorization'>AuthPage</Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
             <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
@@ -34,7 +34,9 @@ class NavBar extends React.Component {
           ) : (
             <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
               <Dropdown.Menu>
-                <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
+                <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout">
+                </Dropdown.Item>
+                <Dropdown.Item icon="user" text="My Profile" as={NavLink} exact to="/profile"/>
               </Dropdown.Menu>
             </Dropdown>
           )}
