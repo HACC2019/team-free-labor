@@ -1,0 +1,127 @@
+.ui.borderless.top.Menu {
+  align-content: center;
+  border: none;
+  background-color: #395878 !important;
+}
+
+.gemsLogo {
+  padding-right: 100px;
+  border: none;
+  box-shadow: none;
+  padding-top: 100px;
+}
+
+#footer {
+  padding-top: 100px;
+}
+
+/* 1st Form Section */
+.ui.divider.divider-props {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.ui.form input[type=checkbox] {
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  left: 0;
+  opacity: 100%!important;
+  outline: 0;
+  z-index: 3;
+  width: 30px;
+  height: 17px;
+  background: white;
+
+
+}
+.bool-field-style {
+  padding-bottom: 5px;
+}
+
+
+
+/* END: 1st Form Section */
+
+
+
+/* START: 7th to 9th Form Section */
+
+.add-margin-top-10px {
+  margin-top: 10px !important;
+}
+
+.add-margin-top-20px {
+  margin-top: 20px !important;
+}
+
+.add-margin-top-40px {
+  margin-top: 40px !important;
+}
+
+.add-margin-top-30vh {
+  margin-top: 30vh;
+}
+
+.float-right {
+  float: right;
+}
+
+.align-right {
+  text-align: right;
+}
+
+#sig-canvas {
+  border: 1px solid rgba(34, 36, 38, .15);
+  border-radius: 6px;
+  cursor: crosshair;
+}
+
+.red {
+  background: red;
+}
+
+.require-margin {
+  margin-left: .5rem !important;
+  margin-right: .5rem !important;
+}
+
+/* END: 7th to 9th Form Section */
+
+.legalDiscretion {
+  max-height: 250px;
+  overflow-y: scroll;
+  border: black;
+}
+
+.termsAndConditions {
+  padding-top: 25px;
+  padding-bottom: 50px;
+}
+
+.title {
+  text-align: center;
+}
+
+.ui.checkbox.new-line {
+  display: block !important;
+  margin-top: 0.85rem !important;
+}
+
+#LogoHome {
+  border: none;
+  box-shadow: none;
+  padding-right: 10px;
+  padding-top: 20px;
+}
+
+.LogoTitle {
+  font-size: 30px;
+  align-content: center;
+}
+
+.footer {
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
