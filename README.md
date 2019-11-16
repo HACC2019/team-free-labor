@@ -1,5 +1,7 @@
 # HGIA Loan Portal
 
+This project is currently actively being maintained at https://github.com/green-loan-portal/simple-green-loans
+
 ## Build
 
 1. Download Meteor (https://www.meteor.com/install)
@@ -14,3 +16,4 @@
 
 
 For details, please see http://ics-software-engineering.github.io/meteor-application-template-react/
+
