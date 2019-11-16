@@ -1,7 +1,7 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Form, Header, Container, Button, Loader } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ExpandCanvas } from "../js/userSignature";
 import AutoForm from 'uniforms-semantic/AutoForm';
 import SubmitField from 'uniforms-semantic/SubmitField';
@@ -13,6 +13,7 @@ import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Section9DB, Section9DBSchemaWithoutOwner } from '/imports/api/stuff/Section9DB';
+import ProgressBar from '../components/ProgressBar';
 
 class Form9 extends React.Component {
 
@@ -72,6 +73,7 @@ class Form9 extends React.Component {
   renderPage() {
     return (
       <Container>
+        <ProgressBar />
         <Header as="h2" className="dividing header">9. DISCLOSURE AND AGREEMENT REGARDING GEM$ APPLICATION</Header>
 
         <div className='legalDiscretion'>
@@ -128,14 +130,11 @@ class Form9 extends React.Component {
           </Form.Group>
 
           <ErrorsField />
+
           <div className="align-right add-margin-top-20px">
-            <Button>
-              <Link to="/form/8">&lt; Previous</Link>
-            </Button>
-            <SubmitField value='Submit' id='submitFormHidden' />
-            <Button>
-              <Link to="/authorization">Save & Next &gt;</Link>
-            </Button>
+            <Button as={NavLink} exact to="/form/8">&lt; Previous</Button>
+            <Button as={NavLink} exact to="/authorization">Next &gt;</Button>
+            <SubmitField value="Save" className="green" />
           </div>
         </AutoForm>
 

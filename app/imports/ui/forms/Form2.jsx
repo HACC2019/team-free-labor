@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Container, Form, Button, Label, Loader } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
-import { Link } from 'react-router-dom';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
@@ -13,6 +13,7 @@ import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Section2DB, Section2DBSchemaWithoutOwner } from '../../api/stuff/Section2DB';
+import ProgressBar from '../components/ProgressBar';
 
 
 class Form2 extends React.Component {
@@ -41,7 +42,7 @@ class Form2 extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Section #6 saved successfully', 'success');
+          swal('Success', 'Section #2 saved successfully', 'success');
         }
       });
     }
@@ -55,7 +56,7 @@ class Form2 extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Section #6 updated successfully', 'success');
+          swal('Success', 'Section #2 updated successfully', 'success');
         }
       });
     }
@@ -70,6 +71,7 @@ class Form2 extends React.Component {
     return (
 
       <Container>
+        <ProgressBar />
         <Header as='h2' className='dividing header'>
           2. RATEPAYER INFORMATION
           <Label className="green">
@@ -85,24 +87,28 @@ class Form2 extends React.Component {
             <TextField
               className="five wide field"
               name='firstName'
-              label='First Name'
+              label={false}
+              placeholder={'First Name'}
               showInlineError={false}
             />
             <TextField
               className="five wide field"
               name='middleName'
-              label='Middle Name'
+              label={false}
+              placeholder={'Middle Name'}
             />
             <TextField
               className="five wide field"
               name='lastName'
-              label='Last Name'
+              label={false}
+              placeholder={'Last Name'}
               showInlineError={false}
             />
             <TextField
               className="five wide field"
               name='utilityAccountNumber'
-              label='Utility Account Number'
+              label={false}
+              placeholder={'Utility Account Number'}
             />
           </Form.Group>
 
@@ -129,13 +135,15 @@ class Form2 extends React.Component {
           <Form.Group>
             <TextField
               className="eight wide field"
-              label='Contractor Name'
               name='contractorName'
+              label={false}
+              placeholder={'Contractor Name'}
             />
             <TextField
               className="eight wide field"
-              label='Contact Name'
               name='contactName'
+              label={false}
+              placeholder={'Contact Name'}
             />
           </Form.Group>
 
@@ -172,13 +180,9 @@ class Form2 extends React.Component {
 
           <ErrorsField />
           <div className="align-right add-margin-top-20px">
-            <Button>
-              <Link to="/form/1">&lt; Previous</Link>
-            </Button>
-            <SubmitField value='Submit' />
-            <Button>
-              <Link to="/form/6">Save & Next &gt;</Link>
-            </Button>
+            <Button as={NavLink} exact to="/form/1">&lt; Previous</Button>
+            <Button as={NavLink} exact to="/form/6">Next &gt;</Button>
+            <SubmitField value="Save" className="green" />
           </div>
         </AutoForm>
       </Container >

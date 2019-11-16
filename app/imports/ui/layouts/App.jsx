@@ -20,9 +20,11 @@ import Form6 from '../forms/Form6';
 import Form7 from '../forms/Form7';
 import Form8 from '../forms/Form8';
 import Form9 from '../forms/Form9';
+import AllForms from '../forms/AllForms';
 import ProfilePage from '../pages/ProfilePage';
 import AuthorizationPage from '../forms/AuthorizationPage';
 import NavBar from '../components/NavBar';
+
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -42,6 +44,7 @@ class App extends React.Component {
             <ProtectedRoute exact path="/form/7" component={Form7} />
             <ProtectedRoute exact path="/form/8" component={Form8} />
             <ProtectedRoute exact path="/form/9" component={Form9} />
+            <ProtectedRoute exact path="/allforms" component={AllForms} />
             <ProtectedRoute path="/authorization" component={AuthorizationPage} />
             <ProtectedRoute path="/list" component={ListStuff} />
             <ProtectedRoute path="/add" component={AddStuff} />

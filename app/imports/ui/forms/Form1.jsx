@@ -9,13 +9,15 @@ import SubmitField from 'uniforms-semantic/SubmitField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import BoolField from 'uniforms-unstyled/BoolField';
 import swal from 'sweetalert';
-import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
+import { NavLink } from 'react-router-dom';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { BaseField, nothing } from 'uniforms';
 import { Section1DBSchemaWithoutOwner, Section1DB } from '/imports/api/stuff/Section1DB';
+import ProgressBar from '../components/ProgressBar';
+import { exportToCsv2, collectdata } from '../../api/stuff/CsvScript';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 
@@ -24,11 +26,13 @@ class Form1 extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { howDidYouHearAboutUs, otherHDYHA, washer, ageOfWasher, dryer, ageOfDryer,
+    const {
+      howDidYouHearAboutUs, otherHDYHA, washer, ageOfWasher, dryer, ageOfDryer,
       kitchenRefrigerator, ageOfKitchenRefrigerator, secondRefrigerator, ageOfSecondRefrigerator,
       chestFreezer, ageOfChestFreezer, solarHWHeater, ageOfSolarHWHeater, PVSystem, ageOfPVSystem,
       LEDCFLBulbs, WIFI, interestedInInstalling, otherInterestedInInstalling, assistanceFrom,
-      assistanceFromOther, anyoneYouKnowName, anyoneYouKnowPhone, anyoneYouKnowEmail, nameOnUtilAcc } = data;
+      assistanceFromOther, anyoneYouKnowName, anyoneYouKnowPhone, anyoneYouKnowEmail, nameOnUtilAcc
+    } = data;
 
     // check to see if account is already in the database.
     let tmp = null;
@@ -36,8 +40,7 @@ class Form1 extends React.Component {
       if (typeof this.props.doc.owner !== undefined) {
         tmp = this.props.doc.owner;
       }
-    }
-    catch (e) {
+    } catch (e) {
       tmp = 'not-defined'
     }
 
@@ -56,8 +59,7 @@ class Form1 extends React.Component {
           swal('Success', 'Section #1 saved successfully', 'success');
         }
       });
-    }
-    else {
+    } else {
       Section1DB.update({ _id: this.props.doc._id }, {
         $set: {
           howDidYouHearAboutUs, otherHDYHA, washer, ageOfWasher, dryer, ageOfDryer,
@@ -85,10 +87,11 @@ class Form1 extends React.Component {
     return (
 
       <Container>
+        <ProgressBar />
         <AutoForm schema={Section1DBSchemaWithoutOwner} onSubmit={data => this.submit(data)} model={this.props.doc}>
           <Header as='h2' className='dividing header'>
-            1. Pre-Application Survey
-              {/** }
+            <strong>1. PRE-APPLICATION SURVEY</strong>
+            {/** }
                <Label className="green">
                Note: The person named on the electric utility account should be the Applicant
                </Label>
@@ -312,19 +315,18 @@ class Form1 extends React.Component {
             />
           </Form.Group>
 
-
           {/* NEW SECTION */}
-
-
           <ErrorsField />
           <div className="align-right add-margin-top-20px">
-            <SubmitField value='Submit' />
-            <Button>
-              <Link to="/form/2">Save & Next &gt;</Link>
+            <Button as={NavLink} exact to="/profile">&lt; Previous</Button>
+            <Button as={NavLink} exact to="/form/2">Next &gt;</Button>
+            <SubmitField value="Save" className="green" />
+            <Button onClick={collectdata} className='exportButton'>
+              Export to Excel
             </Button>
           </div>
         </AutoForm>
-      </Container>
+      </Container >
     );
   }
 }
